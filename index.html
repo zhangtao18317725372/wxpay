@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>点击支付</div>
+</body>
+</html>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+    function onBridgeReady() {
+        WeixinJSBridge.invoke(
+            'getBrandWCPayRequest', {
+                "appId": "wx17ea87763491620f",     
+                "timeStamp": "1630062108",     
+                "nonceStr": "bsRD4EEWVLW4VuhN25fu3GeFnpdqLRd7",   
+                "package": "prepay_id=wx27190148904420559c0c26b05eea1f0000",
+                "signType": "MD5",     
+                "paySign": "DD257D1D35F1B22D2C6178BF71663B79"
+            },
+            function (res) {
+                console.log("微信支付返回值:");
+                console.log(res);
+
+                if (res.err_msg == "get_brand_wcpay_request:ok") {
+                    // 使用以上方式判断前端返回,微信团队郑重提示：
+                    //res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
+                    alert("get_brand_wcpay_request:ok");
+                }
+
+                alert(res.err_msg);
+                alert(res); // 显示是个 Object
+            });
+    }    
+    onBridgeReady();    
+</script>
